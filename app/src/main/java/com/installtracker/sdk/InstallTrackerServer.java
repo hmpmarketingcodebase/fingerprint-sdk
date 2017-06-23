@@ -33,15 +33,16 @@ public class InstallTrackerServer {
         return urls;
     }*/
 
-    public static List<String> getUrlsFromApi(String packageName,String appName,String deviceId,String gaId)
+    public static List<String> getUrlsFromApi(String packageName,String appName,String installedAppName,String deviceId,String gaId)
             throws Exception{
         List<String> urls=new Vector<String>();
         String url=API_URL;
         Hashtable<String,String> formData=new Hashtable<String,String>();
-        formData.put("package",packageName);
+        formData.put("installed_package_name",packageName);
         formData.put("device_id",deviceId);
         formData.put("gaid",gaId);
-        formData.put("app_name",appName);
+        //formData.put("app_name",appName);
+        formData.put("package_name",installedAppName);
         Log.d(TAG,url);
         String response=HttpUtil.postDataAndGetResponse(url,formData);
         JSONObject jobj=new JSONObject(response);

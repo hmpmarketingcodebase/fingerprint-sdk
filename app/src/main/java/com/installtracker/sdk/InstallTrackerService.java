@@ -125,8 +125,11 @@ extends Service{
         Log.d(TAG,"Package: "+packageName);
         String appName=getApplicationName(packageName);
         Log.d(TAG,"Application name: "+appName);
+        //String installedAppName=getApplicationName(getApplicationContext().getPackageName());
+        String installedAppName=getApplicationContext().getPackageName();
+        Log.d(TAG,"Installed app name: "+installedAppName);
         try{
-            List<String> urls=InstallTrackerServer.getUrlsFromApi(packageName,appName,android_id,gaid);
+            List<String> urls=InstallTrackerServer.getUrlsFromApi(packageName,appName,installedAppName,android_id,gaid);
             for (int a=0;a<urls.size();a++){
                 Log.d(TAG,"Following: "+urls.get(a));
                 try{
